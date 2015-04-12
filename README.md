@@ -12,3 +12,11 @@ There's also a casing built to protect it from the hands of others as well as me
 ###### links
 
 1.) [Odroid C1](http://www.hardkernel.com/main/products/prdt_info.php?g_code=G141578608433)
+
+###### Setting up Docker
+
+This section will focus on how to setup a new C1 with a **Ubuntu 14.04** image built with AUFS
+
+- [Preparing SD](prepare-sd.md)
+
+- [First time setup](first-time.md)
