@@ -10,6 +10,12 @@
 
 `rm -rf Desktop Documents Downloads Music Pictures Public Templates Videos`
 
+- Resize root filesystem
+
+Follow the instructions here: https://github.com/mdrjr/odroid-utility 
+
+Select `resize filesystem` once the utility launches
+
 - Setup Docker environment
 
 `sudo apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io`
@@ -27,3 +33,4 @@ Move the downloaded binary: `sudo mv docker-1.5.0 /usr/bin`
 Replace the old binary with the new: `cd /usr/bin; sudo mv docker _docker; sudo ln -s docker-1.5.0 docker`
 
 Fire up Docker!: `sudo service docker.io start`
+
