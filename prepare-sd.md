@@ -4,7 +4,7 @@
 
 - Run the command to decompress the image : `unxz xxxxx.xz`
 
-- Format the SD card to clean it up. [SDformatter](https://www.sdcard.org/downloads/formatter_4) works great! 
+- Format the SD card to clean it up. [SDformatter](https://www.sdcard.org/downloads/formatter_4) works great!
 
 - Look at all the disk drive available: `sudo diskutil list`
 
@@ -19,7 +19,7 @@
 
 Output message: `Unmount of all volumes on disk2 was successful`
 
-- Now it's time to burn to the SD! `sudo dd if=<my/odroid/image.img> of=</dev/path/of/card> bs=1M`
+- Now it's time to burn to the SD! `sudo dd if=<my/odroid/image.img> of=</dev/path/of/card> bs=1m`
 
 If you add a `r` before the disk name, you will achieve faster write speed through "raw" mode
 
@@ -45,5 +45,4 @@ We will make some modifications to save ram by running headless!
   - HDMI (setenv vpu "0")
   - VPU  (setenv hdmioutput "0")
 
-Power up and get running! 
-
+Power up and get running!
