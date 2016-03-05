@@ -1,4 +1,4 @@
-###Steps to setup the microSD card (Mac OSx)
+### Steps to setup the microSD card (Mac OSx)
 
 - Download the ubuntu/lubuntu image from the Odroid wiki: [Ubuntu 14.04](http://odroid.com/dokuwiki/doku.php?id=en:c1_release_linux_ubuntu)
 
@@ -15,15 +15,27 @@
    1:             Windows_FAT_32 BOOT                    15.9 GB    disk2s1
 ```
 
-- We will unmount the disk before performing the write: `sudo diskutil unmountDisk /dev/disk2`
+- We will unmount the disk before performing the write:
+
+```sh
+sudo diskutil unmountDisk /dev/disk2
+```
 
 Output message: `Unmount of all volumes on disk2 was successful`
 
-- Now it's time to burn to the SD! `sudo dd if=<my/odroid/image.img> of=</dev/path/of/card> bs=1m`
+- Now it's time to burn to the SD!
+
+```sh
+sudo dd if=<my/odroid/image.img> of=</dev/path/of/card> bs=1m
+```
 
 If you add a `r` before the disk name, you will achieve faster write speed through "raw" mode
 
-eg. `sudo dd if=c1-ubuntu-20150401.img of=/dev/rdisk2 bs=1m`
+eg.
+
+```sh
+sudo dd if=c1-ubuntu-20150401.img of=/dev/rdisk2 bs=1m
+```
 
 **NOTE:** Be sure of the disk you are entering or you may risk corrupting your hard drive or other storage devices!
 
