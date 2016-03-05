@@ -1,36 +1,69 @@
-###1st time boot up settings
+## 1st time boot up settings
 
-#####Odroid C1
+### Odroid C1
+
+#### Setup SSH without password
+
+- Create a `.ssh` directory at the root directory
+
+```sh
+$ ssh odroid@xxxx.com mkdir -p .ssh
+```
+
+- copy the public key on your local machine over
+
+```sh
+$ cat ~/.ssh/id_rsa.pub | ssh odroid@xxxx.com 'mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys'
+```
+
+Note: if your local machine does not have a puclic/private key, you can use `ssh-keygen -t rsa` to generate one
+
+- Test that it works and you can ssh into the remote box
+
+```sh
+$ ssh odroid@xxxx.com
+```
+
+You should see something like:
+
+`Warning: Permanently added the ECDSA host key for IP address 'xxx.xxx.xxx.xxx' to the list of known hosts.`
 
 - ssh to the board with username **odroid**
 
 - Change password using `passwd odroid`
 
+- Disable password login through ssh with:
+
+```sh
+$ sudo nano /etc/ssh/sshd_config
+$ change to "PermitRootLogin no"
+$ change to "PasswordAuthentication no" from "#PasswordAuthentication yes"
+$ sudo service ssh restart
+
+```
+
+#### Miscellaneous
 - Clear all the files in main directory:
 
-`rm -rf Desktop Documents Downloads Music Pictures Public Templates Videos`
+```sh
+$ cd ~
+$ rm -rf *
+```
 
 - Resize root filesystem
 
-Follow the instructions here: https://github.com/mdrjr/odroid-utility 
+Follow the instructions here: https://github.com/mdrjr/odroid-utility
 
 Select `resize filesystem` once the utility launches
 
-- Setup Docker environment
+#### Setup Docker environment
 
-`sudo apt-get install -y lxc aufs-tools cgroup-lite apparmor docker.io`
+Complete information and script from: https://github.com/umiddelb/z2d/
 
-- Update Docker to 1.5.0 (as of 12 April 2015)
-
-Download the binary here: `curl -O https://raw.githubusercontent.com/umiddelb/armhf/master/bin/docker-1.5.0 > docker-1.5.0`
-
-Change file permission: `chmod a+x docker-1.5.0`
-
-Stop docker: `sudo service docker.io stop`
-
-Move the downloaded binary: `sudo mv docker-1.5.0 /usr/bin`
-
-Replace the old binary with the new: `cd /usr/bin; sudo mv docker _docker; sudo ln -s docker-1.5.0 docker`
-
-Fire up Docker!: `sudo service docker.io start`
-
+```sh
+sudo apt-get -y install lxc aufs-tools cgroup-lite apparmor docker.io
+sudo service docker stop
+curl -sSL https://github.com/umiddelb/armhf/blob/master/bin/docker-1.9.1?raw=true | sudo dd of=/usr/bin/docker
+sudo service docker start
+sudo usermod -aG docker $SUDO_USER
+```
