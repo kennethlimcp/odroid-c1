@@ -5,11 +5,6 @@
 #### Setup SSH without password
 
 - Create a `.ssh` directory at the root directory
-
-```sh
-$ ssh odroid@xxxx.com mkdir -p .ssh
-```
-
 - copy the public key on your local machine over
 
 ```sh
